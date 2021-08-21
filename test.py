@@ -2,6 +2,6 @@ import numpy as np
 import pandas as pd
 import torch
 
-labels = pd.read_csv("datas/trainLabels.csv")
-labels = np.array(labels["label"])
+
+labels = np.load("datas/processed_images/labels.npy", allow_pickle=True)
 print(labels)
