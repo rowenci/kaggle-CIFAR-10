@@ -131,4 +131,4 @@ dmypy.json
 # datas
 /datas/
 # trained models
-/trained_models/
+# model/trained_models/*

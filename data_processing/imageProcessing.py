@@ -1,5 +1,6 @@
 from PIL import Image
 from torchvision import transforms
+import torch
 import numpy as np
 import pandas as pd
 import sys
@@ -11,7 +12,7 @@ logger = logConfig.getLogger("logs/imageProcessing.log")
 
 def loadImages():
     # image list
-    images = np.ndarray((50000, 3, 32, 32), dtype=np.float32)
+    images = np.zeros((50000, 3, 32, 32))
     logger.info("begining loading images")
     i = 0
     while True:
@@ -29,8 +30,10 @@ def loadImages():
             break
         else:
             # transfer image type into numpy
-            img = np.array(img, dtype=np.float32)
-            img.resize(3, 32, 32)
+            img = np.array(img)
+            img = torch.from_numpy(img)
+            img = img.transpose(0, 2)
+            img = img.transpose(1, 2)
             images[i, :, :, :] = img
             i += 1
     return images
