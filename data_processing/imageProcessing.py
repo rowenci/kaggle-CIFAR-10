@@ -23,10 +23,6 @@ def loadImages():
             img_path = "datas/train/" + str(imageLabel) + ".png"
             img = Image.open(img_path)
         except FileNotFoundError: # 没有该图片或者图片读取完成
-            if i == 50001:
-                logger.info("image loader finished")
-            else:
-                logger.error("image not found", img_path)
             break
         else:
             # transfer image type into numpy
